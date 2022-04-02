@@ -1,5 +1,6 @@
 import React from 'react';
 import { List } from "./List";
+import { Form } from "./Form";
 
 class App extends React.Component {
   // ステートを使うときは、
@@ -7,7 +8,10 @@ class App extends React.Component {
     super(props);
     // クラスコンポーネントでは this.state がステートになる
     // 初期値は ’クリック前の表示’
-    this.state = { description: 'クリック前の表示' }
+    this.state = {
+      description: 'クリック前の表示' ,
+      tab: 'list',
+    }
   }
 
   // Descriptionを変更する関数
@@ -21,11 +25,21 @@ class App extends React.Component {
 
   render() {
     // this.state でステートを取り出し、descriptionを呼び出す
-    const { description } = this.state;
+    const { tab, description } = this.state;
     return (
       <div>
+        <header>
+          <ul>
+            <li onClick={() => this.setState({ tab: 'list' })}>リスト</li>
+            <li onClick={() => this.setState({ tab: 'form' })}>フォーム</li>
+          </ul>
+        </header>
         { description }
-        <List title="取扱言語一覧" />
+        {
+          tab === 'list' ? 
+          <List title="取扱言語一覧" /> : 
+          <Form />
+        }
         <button onClick={() => this.changeDescription()}>
           ボタン
         </button>
