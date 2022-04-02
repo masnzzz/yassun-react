@@ -9,23 +9,12 @@ class App extends React.Component {
     // クラスコンポーネントでは this.state がステートになる
     // 初期値は ’クリック前の表示’
     this.state = {
-      description: 'クリック前の表示' ,
       tab: 'list',
     }
   }
 
-  // Descriptionを変更する関数
-  changeDescription() {
-    // setState はオブジェクトを受け取り
-    this.setState({
-      // 変更後の値を入れる
-      description: 'クリック後の表示です。'
-    })
-  }
-
   render() {
-    // this.state でステートを取り出し、descriptionを呼び出す
-    const { tab, description } = this.state;
+    const { tab } = this.state;
     return (
       <div>
         <header>
@@ -34,15 +23,12 @@ class App extends React.Component {
             <li onClick={() => this.setState({ tab: 'form' })}>フォーム</li>
           </ul>
         </header>
-        { description }
+        <hr />
         {
           tab === 'list' ? 
-          <List title="取扱言語一覧" /> : 
+          <List /> : 
           <Form />
         }
-        <button onClick={() => this.changeDescription()}>
-          ボタン
-        </button>
       </div>
     )
     // クラスのメソッドを呼び出すので、thisが引き継がれている必要あり。
