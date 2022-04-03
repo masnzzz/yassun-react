@@ -12,10 +12,10 @@ import { getLanguages } from "./const/languages";
   // [langs]を指定すると、ここの変更があった場合のみ実行する
   useEffect(() => {
     console.log('App.js:useEffect');
-    fetchLanguages();
+    fetchLanguages(); // APIから取得するイメージ
   }, [])
 
-  const fetchLanguages = async() => {
+  const fetchLanguages = async () => {
     const languages = await getLanguages();
     setLangs(languages);
   }

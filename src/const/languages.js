@@ -11,5 +11,5 @@ export const getLanguages = () => {
         setTimeout(() => {
             resolve(LANGUAGES);
         }, 1000);
-    })
-}
+    });
+};

@@ -1,15 +1,5 @@
-import { useEffect } from 'react';
-
 // 親コンポーネントApp.jsから受け取ったlangs配列（言語のリスト）を取得
 export const List = ({ langs }) => {
-
-  useEffect(() => {
-    console.log('List.js:useEffect');
-
-    return () => {
-      console.log('List.js:useEffect:unmount');
-    }
-  })
 
   return (
       <div>
