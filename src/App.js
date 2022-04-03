@@ -1,6 +1,7 @@
 import React from 'react';
 import { List } from "./List";
 import { Form } from "./Form";
+import { LANGUAGES } from "./const/languages";
 
 class App extends React.Component {
   // ステートを使うときは、
@@ -10,11 +11,20 @@ class App extends React.Component {
     // 初期値は ’クリック前の表示’
     this.state = {
       tab: 'list',
+      langs: LANGUAGES
     }
   }
 
+  // Form.jsに渡すための関数
+  addLang(lang) {
+    this.setState({ 
+      tab: 'list',
+      langs: [...this.state.langs, lang]
+    })
+  }
+
   render() {
-    const { tab } = this.state;
+    const { tab, langs } = this.state;
     return (
       <div>
         <header>
@@ -26,8 +36,8 @@ class App extends React.Component {
         <hr />
         {
           tab === 'list' ? 
-          <List /> : 
-          <Form />
+          <List langs={langs} /> : 
+          <Form onAddLang={(lang) => this.addLang(lang)} />
         }
       </div>
     )
