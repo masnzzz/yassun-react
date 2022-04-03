@@ -1,11 +1,24 @@
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { List } from "./List";
 import { Form } from "./Form";
-import { LANGUAGES } from "./const/languages";
+import { getLanguages } from "./const/languages";
 
  function App() {
   const [tab, setTab] = useState('list');
-  const [langs, setLangs] = useState(LANGUAGES);
+  const [langs, setLangs] = useState([]);
+
+  // 第一引数は関数、/ 第二引数は空配列にすると最初のマウンティングのみ発生（一番最初のみ実行したい場合）
+  // [langs]を指定すると、ここの変更があった場合のみ実行する
+  useEffect(() => {
+    console.log('App.js:useEffect');
+    fetchLanguages();
+  }, [])
+
+  const fetchLanguages = async() => {
+    const languages = await getLanguages();
+    setLangs(languages);
+  }
 
   const addLang = (lang) => {
     // 新しいlangをlangs配列に入れる
