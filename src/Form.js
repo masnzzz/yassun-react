@@ -1,13 +1,15 @@
 import { useState } from 'react';
 
-export const Form = () => {
+// 親コンポーネントApp.jsからonAddLang関数を取得
+export const Form = ({ onAddLang }) => {
     // text ステートを定義した
     const [text, setText] = useState('');
 
     const submitForm = (e) => {
         // ページ遷移が起きないようにしている
         e.preventDefault();
-        console.log(text);
+        // onAddLangを実行し、App.js内のaddLang関数の処理が発火する
+        onAddLang(text);
     }
 
     return (

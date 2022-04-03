@@ -1,16 +1,9 @@
-const LANGAGES = [
-    'JavaScript',
-    'C++',
-    'PHP',
-    'Go',
-    'Ruby'
-];
-
-export const List = () => {
+// 親コンポーネントApp.jsから受け取ったlangs配列（言語のリスト）を取得
+export const List = ({ langs }) => {
     return (
         <div>
             {
-                LANGAGES.map((lang, index) => {
+                langs.map((lang, index) => {
                     return <div key={index}>{ lang }</div>
                 })
             }
