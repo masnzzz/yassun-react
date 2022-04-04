@@ -1,8 +1,5 @@
 import styled from "styled-components"
-
-const Container = styled.div`
-  padding: 12px 64px;
-`
+import { TabBodyContainer } from './components/tab-body-container';
 
 const ListItem = styled.div`
  padding: 8px 16px;
@@ -10,20 +7,19 @@ const ListItem = styled.div`
  &:nth-child(n+2) {
    border-top: 1px solid #D9DBDE;
  }
-
 `
 
 // 親コンポーネントApp.jsから受け取ったlangs配列（言語のリスト）を取得
 export const List = ({ langs }) => {
 
   return (
-      <Container>
+      <TabBodyContainer title="取扱言語リスト">
           {
               langs.map((lang, index) => {
                   return <ListItem key={index}>{ lang }</ListItem>
               })
           }
-      </Container>
+      </TabBodyContainer>
   )
   // LANGAGEの中を繰り返し表示できるようにする
   // map関数、配列を変換して別の配列にする関数、ここでは言語の文字列のリストをjsxのhtmlのリストに変更する
