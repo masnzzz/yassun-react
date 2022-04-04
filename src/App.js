@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { useState } from 'react';
 import { List } from "./List";
 import { Form } from "./Form";
 import { getLanguages } from "./const/languages";
+import { withLoading } from './hoc/withLoading';
 
 const Header = styled.header`
   display: flex;
@@ -25,21 +26,9 @@ const HeaderLi = styled.li`
   border-bottom: ${props => props.focused ? '2px solid #F44336' : 'none' };
 `
 
- function App() {
+ function App({ data }) {
   const [tab, setTab] = useState('list');
-  const [langs, setLangs] = useState([]);
-
-  // 第一引数は関数、/ 第二引数は空配列にすると最初のマウンティングのみ発生（一番最初のみ実行したい場合）
-  // [langs]を指定すると、ここの変更があった場合のみ実行する
-  useEffect(() => {
-    console.log('App.js:useEffect');
-    fetchLanguages(); // APIから取得するイメージ
-  }, [])
-
-  const fetchLanguages = async () => {
-    const languages = await getLanguages();
-    setLangs(languages);
-  }
+  const [langs, setLangs] = useState(data);
 
   const addLang = (lang) => {
     // 新しいlangをlangs配列に入れる
@@ -63,4 +52,5 @@ const HeaderLi = styled.li`
   );
 }
 
-export default App;
+// withLoading(WrappedComponent, fetchData)
+export default withLoading(App, getLanguages);
